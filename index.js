@@ -6,7 +6,7 @@ const fs = require("fs")
 
 
 
-const scrape = async () => {
+ async function scrape() {
     // Create a cluster with 2 workers
     const cluster = await Cluster.launch({
         concurrency: Cluster.CONCURRENCY_CONTEXT,
@@ -48,8 +48,15 @@ const scrape = async () => {
 }
 
 
-let cont = 0;
-while(cont<CONFIG.timesExecuted){
-    await scrape();
-    cont++
+async function main(){
+    let cont = 0;
+    while(cont<CONFIG.timesExecuted){
+        console.log(`---------- Ciclo ${cont} iniciando`)
+        await scrape();
+        console.log(`---------- Ciclo ${cont} terminado`)
+        cont++
+        
+    }
 }
+
+main();
