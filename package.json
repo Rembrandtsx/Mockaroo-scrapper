@@ -4,14 +4,19 @@
   "description": "Mockaroo Web Scrapper with schemas",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "scrapper": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Rembrandtsx/Mockaroo-scrapper.git"
   },
+  "dependencies": {
+    "puppeteer": "^1.6.0",
+    "puppeteer-cluster": "^0.12.1"
+  },
   "author": "Camilo Andres Salinas Martinez",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Rembrandtsx/Mockaroo-scrapper/issues"
   },
