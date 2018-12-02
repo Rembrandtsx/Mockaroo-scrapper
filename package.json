@@ -1,0 +1,19 @@
+{
+  "name": "mockaroo-web-scrapper",
+  "version": "1.0.0",
+  "description": "Mockaroo Web Scrapper with schemas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rembrandtsx/Mockaroo-scrapper.git"
+  },
+  "author": "Camilo Andres Salinas Martinez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rembrandtsx/Mockaroo-scrapper/issues"
+  },
+  "homepage": "https://github.com/Rembrandtsx/Mockaroo-scrapper#readme"
+}
