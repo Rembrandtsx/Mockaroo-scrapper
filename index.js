@@ -6,7 +6,7 @@ const fs = require("fs")
 
 
 
- async function scrape() {
+ async function scrape(currenExecutionNumber) {
     // Create a cluster with 2 workers
     const cluster = await Cluster.launch({
         concurrency: Cluster.CONCURRENCY_CONTEXT,
@@ -26,9 +26,10 @@ const fs = require("fs")
         const title = await page.evaluate(()=>{
             return document.querySelector("H2").innerHTML;  
         })
+        
         console.log(title);
         const pathData ="./data/"+title+"/"+ Date.now();
-        
+
         await page._client.send('Page.setDownloadBehavior', {
             behavior: 'allow',
             downloadPath: pathData
@@ -51,12 +52,15 @@ const fs = require("fs")
 async function main(){
     let cont = 0;
     while(cont<CONFIG.timesExecuted){
-        console.log(`---------- Ciclo ${cont} iniciando`)
-        await scrape();
-        console.log(`---------- Ciclo ${cont} terminado`)
+        console.log(`---------- Ciclo ${cont+1} iniciando`)
+        await scrape(cont+1);
+        console.log(`---------- Ciclo ${cont+1} terminado`)
         cont++
         
     }
+    
 }
 
 main();
+
+
