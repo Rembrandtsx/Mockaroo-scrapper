@@ -11,24 +11,21 @@ const fs = require("fs")
     const cluster = await Cluster.launch({
         concurrency: Cluster.CONCURRENCY_CONTEXT,
         maxConcurrency: 2,
-        monitor:true,
+        monitor:true
 
     });
-
+ 
     // Define a task (in this case: screenshot of page)
     await cluster.task(async ({ page, data: url }) => {
         await page.goto("https://www.mockaroo.com/users/sign_in", {waitUntil:"networkidle0"});
         await page.type("#user_email",CONFIG.username);
         await page.type("#user_password",CONFIG.password);
         await page.click("input.btn.btn-success")
-        await page.waitFor(1000);
+        await page.waitFor(3000);
         await page.goto(url);
-        const title = await page.evaluate(()=>{
-            return document.querySelector("H2").innerHTML;  
-        })
         
-        console.log(title);
-        const pathData ="./data/"+title+"/"+ Date.now();
+        
+        const pathData ="./data/"+"/"+ Date.now();
 
         await page._client.send('Page.setDownloadBehavior', {
             behavior: 'allow',
@@ -37,7 +34,9 @@ const fs = require("fs")
         await page.click("#download");
         await page.waitFor(10000);
     });
-
+    cluster.on('taskerror', (err, data) => {
+        console.log(`Error crawling ${data}: ${err.message}`);
+    });
     // Add some pages to queue
     for(page of CONFIG.schemas){
         await cluster.queue(page);
