@@ -12,7 +12,7 @@
     "url": "git+https://github.com/Rembrandtsx/Mockaroo-scrapper.git"
   },
   "dependencies": {
-    "puppeteer": "^1.6.0",
+    "puppeteer": "^1.13.0",
     "puppeteer-cluster": "^0.12.1"
   },
   "author": "Camilo Andres Salinas Martinez",
